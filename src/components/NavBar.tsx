@@ -1,40 +1,59 @@
 
-import React from 'react';
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import UserAvatar from '@/components/UserAvatar';
 
 const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeSheet = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-kling-darker bg-opacity-80 backdrop-blur-lg border-b border-kling-gray">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <div className="text-kling-green font-bold text-2xl flex items-center">
-                <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="mr-2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
-                  <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                  <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                </svg>
-                TempoMotion AI
+    <header className="fixed w-full top-0 z-10 bg-kling-dark border-b border-kling-light-gray">
+      <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+        <Link to="/" className="text-xl font-bold text-white">
+          TempoMotion AI
+        </Link>
+
+        {/* Navigation sur grand écran */}
+        <nav className="hidden md:flex items-center gap-6">
+          <Link to="/" className="text-gray-300 hover:text-white">Accueil</Link>
+          <Link to="/features" className="text-gray-300 hover:text-white">Fonctionnalités</Link>
+          <Link to="/pricing" className="text-gray-300 hover:text-white">Tarifs</Link>
+          <UserAvatar />
+        </nav>
+
+        {/* Menu mobile */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="ghost" className="p-2">
+              <Menu className="h-6 w-6 text-white" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="bg-kling-gray border-kling-light-gray">
+            <nav className="flex flex-col gap-4 mt-8">
+              <Link to="/" onClick={closeSheet} className="text-lg text-white py-2 hover:text-kling-green">
+                Accueil
+              </Link>
+              <Link to="/features" onClick={closeSheet} className="text-lg text-white py-2 hover:text-kling-green">
+                Fonctionnalités
+              </Link>
+              <Link to="/pricing" onClick={closeSheet} className="text-lg text-white py-2 hover:text-kling-green">
+                Tarifs
+              </Link>
+              <div onClick={closeSheet} className="py-2">
+                <UserAvatar />
               </div>
-            </Link>
-          </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              <Link to="/" className="text-gray-200 hover:text-kling-green px-3 py-2 rounded-md text-sm font-medium">Accueil</Link>
-              <Link to="/studio" className="text-gray-200 hover:text-kling-green px-3 py-2 rounded-md text-sm font-medium">Studio Créatif</Link>
-              <Link to="/api" className="text-gray-200 hover:text-kling-green px-3 py-2 rounded-md text-sm font-medium">API Platform</Link>
-              <Link to="/about" className="text-gray-200 hover:text-kling-green px-3 py-2 rounded-md text-sm font-medium">À Propos</Link>
-            </div>
-          </div>
-          <Button className="bg-kling-green hover:bg-kling-green/90 text-kling-dark font-semibold">
-            Créer
-          </Button>
-        </div>
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
-    </nav>
+    </header>
   );
 };
 

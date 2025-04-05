@@ -1,16 +1,28 @@
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
 import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import GenerationOptions from '@/components/GenerationOptions';
 import PricingSection from '@/components/PricingSection';
 import Footer from '@/components/Footer';
-import AuthModal from '@/components/AuthModal';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Index = () => {
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  
+  const handleCallToAction = () => {
+    if (user) {
+      // Rediriger vers le tableau de bord ou la page de génération de vidéos
+      // Pour l'instant, nous redirigeons vers la page de profil
+      navigate('/profile');
+    } else {
+      navigate('/auth');
+    }
+  };
   
   return (
     <main className="bg-kling-dark min-h-screen text-white">
@@ -33,16 +45,14 @@ const Index = () => {
           </p>
           <Button 
             className="bg-kling-green hover:bg-kling-green/90 text-kling-dark font-semibold px-8 py-6 text-lg rounded-full"
-            onClick={() => setIsAuthModalOpen(true)}
+            onClick={handleCallToAction}
           >
-            Commencer gratuitement
+            {user ? 'Accéder à mon compte' : 'Commencer gratuitement'}
           </Button>
         </div>
       </section>
       
       <Footer />
-      
-      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
     </main>
   );
 };
