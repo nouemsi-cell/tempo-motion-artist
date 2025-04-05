@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				kling: {
+					'green': '#7CFF53',
+					'dark': '#121212',
+					'darker': '#0A0A0A',
+					'gray': '#1E1E1E',
+					'light-gray': '#2A2A2A'
 				}
 			},
 			borderRadius: {
@@ -84,11 +92,31 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						opacity: '1',
+						boxShadow: '0 0 20px rgba(124, 255, 83, 0.6)'
+					},
+					'50%': {
+						opacity: '0.8',
+						boxShadow: '0 0 30px rgba(124, 255, 83, 0.9)'
+					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-glow': 'pulse-glow 2s infinite',
+				'float': 'float 6s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'cyberpunk-gradient': 'linear-gradient(45deg, #121212, #1E1E1E)',
+				'hero-pattern': 'radial-gradient(circle at center, rgba(124, 255, 83, 0.15) 0%, rgba(0, 0, 0, 0) 70%)'
 			}
 		}
 	},
