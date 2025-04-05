@@ -1,5 +1,6 @@
 
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
@@ -8,6 +9,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 
 const GenerationOptions = () => {
+  const navigate = useNavigate();
+  const [promptText, setPromptText] = useState('');
+  
+  const handleGenerate = () => {
+    navigate('/create', { state: { prompt: promptText } });
+  };
+  
   return (
     <section className="py-20 bg-kling-dark px-4">
       <div className="max-w-6xl mx-auto">
@@ -28,6 +36,8 @@ const GenerationOptions = () => {
               <Textarea 
                 placeholder="Décrivez la scène que vous souhaitez générer en détail. Précisez le sujet, les mouvements, l'environnement, l'éclairage et l'ambiance..."
                 className="min-h-[150px] bg-kling-dark border-kling-light-gray"
+                value={promptText}
+                onChange={(e) => setPromptText(e.target.value)}
               />
               
               <div className="mt-6">
@@ -109,7 +119,10 @@ const GenerationOptions = () => {
           </Tabs>
           
           <div className="mt-8 flex justify-center">
-            <Button className="bg-kling-green hover:bg-kling-green/90 text-kling-dark font-semibold px-8 py-6 text-lg rounded-full">
+            <Button 
+              className="bg-kling-green hover:bg-kling-green/90 text-kling-dark font-semibold px-8 py-6 text-lg rounded-full"
+              onClick={handleGenerate}
+            >
               Générer la vidéo
             </Button>
           </div>

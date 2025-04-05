@@ -1,9 +1,18 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
+  const [prompt, setPrompt] = useState('');
+  const navigate = useNavigate();
+  
+  const handleGenerate = () => {
+    // Redirection vers la page de création avec le prompt si fourni
+    navigate('/create', { state: { prompt } });
+  };
+  
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center px-4 bg-cyberpunk-gradient overflow-hidden">
       {/* Background effect */}
@@ -24,8 +33,13 @@ const HeroSection = () => {
             <Input 
               placeholder="Une femme marche dans une rue cyberpunk sous la pluie..." 
               className="w-full px-6 py-6 text-lg bg-kling-gray border border-kling-light-gray rounded-full pr-32"
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
             />
-            <Button className="absolute right-1 top-1 bottom-1 bg-kling-green hover:bg-kling-green/90 text-kling-dark font-semibold px-6 rounded-full">
+            <Button 
+              className="absolute right-1 top-1 bottom-1 bg-kling-green hover:bg-kling-green/90 text-kling-dark font-semibold px-6 rounded-full"
+              onClick={handleGenerate}
+            >
               Générer
             </Button>
           </div>
