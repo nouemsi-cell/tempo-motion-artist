@@ -53,6 +53,10 @@
     @apply border-border;
   }
   
+  html {
+    @apply scroll-smooth;
+  }
+  
   body {
     @apply bg-kling-dark text-foreground font-["Inter",sans-serif];
   }
@@ -61,7 +65,43 @@
     @apply bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent;
   }
   
+  .text-gradient-green {
+    @apply bg-gradient-to-r from-kling-green to-green-300 bg-clip-text text-transparent;
+  }
+  
   .glow-effect {
     @apply relative after:absolute after:inset-0 after:rounded-md after:bg-kling-green after:opacity-20 after:blur-md;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-[0_0_15px_rgba(124,255,83,0.3)] hover:-translate-y-1;
+  }
+  
+  .glassmorphism {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-lg;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-kling-green to-green-400 text-kling-dark font-medium rounded-full 
+    px-6 py-3 transition-all hover:shadow-[0_0_20px_rgba(124,255,83,0.5)] hover:scale-[1.02] active:scale-[0.98];
+  }
+  
+  .btn-secondary {
+    @apply bg-kling-gray border border-kling-light-gray text-white font-medium rounded-full 
+    px-6 py-3 transition-all hover:bg-kling-light-gray hover:border-white/20;
+  }
+  
+  .section-spacing {
+    @apply py-16 md:py-24;
+  }
+  
+  .feature-card {
+    @apply bg-kling-gray border border-kling-light-gray rounded-xl p-6 card-hover;
+  }
+  
+  .input-glow:focus {
+    @apply ring-2 ring-kling-green/50 border-kling-green/70;
   }
 }

@@ -15,6 +15,7 @@ import About from "./pages/About";
 import VideoCreator from "./pages/VideoCreator";
 import Explorer from "./pages/Explorer";
 import Notifications from "./pages/Notifications";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/create" element={<VideoCreator />} />
             <Route path="/explorer" element={<Explorer />} />
             <Route path="/notifications" element={<Notifications />} />
+            <Route path="/settings" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
