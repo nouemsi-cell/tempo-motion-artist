@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import NavBar from '@/components/NavBar';
@@ -19,7 +18,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Card, CardContent } from '@/components/ui/card';
 import { 
   Video, Film, Clock, Sparkles, AlignLeft, ImagePlus, Download, 
-  Share2, Loader2, Settings, Check, Wand2, RefreshCw 
+  Share2, Loader2, Settings, Check, Wand2, RefreshCw, Play 
 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 
@@ -81,7 +80,6 @@ const VideoCreator = () => {
     
     setIsGenerating(true);
     
-    // Simuler le temps de génération
     setTimeout(() => {
       setIsGenerating(false);
       setGenerated(true);
@@ -126,7 +124,6 @@ const VideoCreator = () => {
         <div className="flex-1 p-6 pt-20 overflow-auto">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row gap-8">
-              {/* Panneau de gauche - Options */}
               <div className="w-full md:w-1/3 space-y-6">
                 <Card className="bg-kling-gray border-kling-light-gray shadow-lg">
                   <CardContent className="p-6">
@@ -376,7 +373,6 @@ const VideoCreator = () => {
                 </Card>
               </div>
               
-              {/* Panneau de droite - Prévisualisation */}
               <div className="w-full md:w-2/3">
                 <Card className="bg-kling-gray border-kling-light-gray shadow-lg h-full">
                   <CardContent className="p-6">
